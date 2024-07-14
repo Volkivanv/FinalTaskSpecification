@@ -71,3 +71,113 @@ Blaze, Horse, 2016-02-29, (trot,jump,gallop)
 
 2. #### Работа с директориями в Linux
 
+- Создать новую директорию и переместить туда файл "Human Friends".
+
+```zsh
+ ┏━[20:31:21]  
+ ┃ /home/ivan
+ ┗━➤  ll
+итого 80K
+drwxrwxr-x 4 ivan ivan 4,0K мая  5 22:42  DZ4
+drwxrwxr-x 4 ivan ivan 4,0K мая  7 22:58  DZ5
+-rw-rw-r-- 1 ivan ivan  587 июл 11 23:34  HumanFriends.txt
+-rw-rw-r-- 1 ivan ivan    0 июл 11 23:20  Pack
+-rw-rw-r-- 1 ivan ivan  311 июл 11 23:28  Pack_animals.txt
+-rw-rw-r-- 1 ivan ivan  276 июл 11 23:12  Pets.txt
+drwxrwxr-x 7 ivan ivan 4,0K апр 22 21:24  seminar_4
+drwxrwxr-x 2 ivan ivan 4,0K мар 29 21:47  server
+drwxr-x--- 2 root root 4,0K мар 28 23:42  shared
+-rwxrwxr-x 1 ivan ivan  242 мая  3 01:38  shell.sh
+drwx------ 6 ivan ivan 4,0K апр 18 08:11  snap
+drwxr-xr-x 2 root root 4,0K мая  3 00:47  tmp
+-rwxrwxr-x 1 ivan ivan   42 апр 17 22:57  while.sh
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Видео
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Документы
+drwxr-xr-x 2 ivan ivan 4,0K мая  6 00:39  Загрузки
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Изображения
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Музыка
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Общедоступные
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56 'Рабочий стол'
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Шаблоны
+ ┏━[20:31:24]  
+ ┃ /home/ivan
+ ┗━➤  mkdir finalDZ                        
+ ┏━[20:43:08]  
+ ┃ /home/ivan
+ ┗━➤  mv HumanFriends.txt finalDZ          
+ ┏━[20:44:33]  
+ ┃ /home/ivan
+ ┗━➤  ll
+итого 80K
+drwxrwxr-x 4 ivan ivan 4,0K мая  5 22:42  DZ4
+drwxrwxr-x 4 ivan ivan 4,0K мая  7 22:58  DZ5
+drwxrwxr-x 2 ivan ivan 4,0K июл 14 20:44  finalDZ
+-rw-rw-r-- 1 ivan ivan    0 июл 11 23:20  Pack
+-rw-rw-r-- 1 ivan ivan  311 июл 11 23:28  Pack_animals.txt
+-rw-rw-r-- 1 ivan ivan  276 июл 11 23:12  Pets.txt
+drwxrwxr-x 7 ivan ivan 4,0K апр 22 21:24  seminar_4
+drwxrwxr-x 2 ivan ivan 4,0K мар 29 21:47  server
+drwxr-x--- 2 root root 4,0K мар 28 23:42  shared
+-rwxrwxr-x 1 ivan ivan  242 мая  3 01:38  shell.sh
+drwx------ 6 ivan ivan 4,0K апр 18 08:11  snap
+drwxr-xr-x 2 root root 4,0K мая  3 00:47  tmp
+-rwxrwxr-x 1 ivan ivan   42 апр 17 22:57  while.sh
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Видео
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Документы
+drwxr-xr-x 2 ivan ivan 4,0K мая  6 00:39  Загрузки
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Изображения
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Музыка
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Общедоступные
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56 'Рабочий стол'
+drwxr-xr-x 2 ivan ivan 4,0K мар 28 22:56  Шаблоны
+ ┏━[20:44:53]  
+ ┃ /home/ivan
+ ┗━➤  cd finalDZ           
+ ┏━[20:45:14]  
+ ┃ /home/ivan/finalDZ
+ ┗━➤  ll
+итого 4,0K
+-rw-rw-r-- 1 ivan ivan 587 июл 11 23:34 HumanFriends.txt
+```
+
+3. #### Работа с MySQL в Linux. “Установить MySQL на вашу вычислительную машину ”
+   - Подключить дополнительный репозиторий MySQL и установить один из пакетов из этого репозитория.
+```zsh
+ ┏━[00:11:26]  
+ ┃ /home/ivan/finalDZ
+ ┗━➤  sudo wget https://dev.mysql.com/get/mysql-apt-config_0.8.32-1_all.deb
+ ┏━[00:12:21]  
+ ┃ /home/ivan/finalDZ
+ ┗━➤  sudo dpkg -i mysql-apt-config_0.8.32-1_all.deb
+ ┏━[00:16:28]  
+ ┃ /home/ivan/finalDZ
+ ┗━➤  sudo apt-get update 
+ ┏━[00:18:45]  
+ ┃ /home/ivan/finalDZ
+ ┗━➤  sudo apt-get install mysql-shell
+```
+
+4. #### Управление deb-пакетами
+   - Установить и затем удалить deb-пакет, используя команду `dpkg`.
+```zsh
+ ┏━[00:47:48]  
+ ┃ /home/ivan/finalDZ
+ ┗━➤  wget https://zoom.us/client/latest/zoom_amd64.deb
+ ┏━[00:49:10]  
+ ┃ /home/ivan/finalDZ
+ ┗━➤  sudo dpkg -i zoom_amd64.deb
+
+```
+![img.png](img.png)
+```zsh
+┏━[00:49:32]  
+┃ /home/ivan/finalDZ
+┗━➤  sudo dpkg -r zoom
+(Чтение базы данных … на данный момент установлено 237983 файла и каталога.)
+Удаляется zoom (6.1.1.443) …
+run post uninstall script, action is remove ...
+Обрабатываются триггеры для shared-mime-info (2.1-2) …
+Обрабатываются триггеры для mailcap (3.70+nmu1ubuntu1) …
+Обрабатываются триггеры для gnome-menus (3.36.0-1ubuntu3) …
+Обрабатываются триггеры для desktop-file-utils (0.26-1ubuntu3) …
+```

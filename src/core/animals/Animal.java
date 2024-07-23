@@ -11,17 +11,33 @@ public abstract class Animal{
     private String name;
     private String type;
     private Date birthDate;
-    private List<Command> commands = new ArrayList<>();
+    private List<Command> commands;
 
     public Animal(int id, String name, String type, Date birthDate) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.birthDate = birthDate;
+        commands = new ArrayList<>();
     }
 
     public void addCommand(Command command) {
         commands.add(command);
+    }
+    public String getName() {
+        return name;
+    }
+    public int getId() {
+        return id;
+    }
+    public String getType() {
+        return type;
+    }
+    public Date getBirthDate() {
+        return birthDate;
+    }
+    public List<Command> getCommands() {
+        return commands;
     }
 
 

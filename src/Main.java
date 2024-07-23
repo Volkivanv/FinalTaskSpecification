@@ -1,8 +1,14 @@
 package src;
 
+import src.core.logger.Logger;
+import src.core.logger.impl.LoggerTxt;
+import src.core.view.View;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
-        System.out.println("This is my first Java program.");
+        Logger logger = new LoggerTxt("log.txt");
+        View view = new View(logger);
+        view.Run();
+
     }
 }

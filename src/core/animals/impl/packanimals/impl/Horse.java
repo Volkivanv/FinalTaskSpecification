@@ -5,7 +5,7 @@ import src.core.animals.impl.packanimals.PackAnimal;
 import java.sql.Date;
 
 public class Horse extends PackAnimal {
-    public Horse(int id, String name, String type, Date birthDate) {
-        super(id, name, type, birthDate);
+    public Horse(int id, String name, Date birthDate) {
+        super(id, name, "Horse", birthDate);
     }
 }

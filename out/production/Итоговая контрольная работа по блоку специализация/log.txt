@@ -18,6 +18,3 @@
 Добавлено животное: Animal{id=1, name='Storm', type='Horse', birthDate=Wed Sep 21 00:00:00 MSK 2011', Животное на знает команд! }
 Добавлено животное: Animal{id=2, name='Bobik', type='Camel', birthDate=Wed May 04 00:00:00 MSK 2011', Животное на знает команд! }
 Приложение завершило работу.
-Запуск приложения...
-Добавлено животное: Animal{id=1, name='Hog', type='Donkey', birthDate=Sun Jul 05 00:00:00 MSK 2020', Животное на знает команд! }
-Приложение завершило работу.

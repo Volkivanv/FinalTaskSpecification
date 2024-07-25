@@ -66,7 +66,7 @@ public class View {
             if (animalToTrain.getNewAvailableCommands().contains(newCommand)) {
                 animalToTrain.addCommand(newCommand);
             }
-
+            logger.log("Тренировано животное: " + animalToTrain);
         } else {
             System.out.println("Животное с таким ID не найдено.");
         }
@@ -81,6 +81,7 @@ public class View {
         if (animalToDelete!= null) {
             animals.remove(animalToDelete);
             System.out.println("Животное с ID " + id + " удалено.");
+            logger.log("Удалено животное: " + animalToDelete);
         } else {
             System.out.println("Животное с таким ID не найдено.");
         }
@@ -91,6 +92,7 @@ public class View {
         sortedAnimals.sort(Comparator.comparing(Animal::getBirthDate));
         System.out.println("Список животных:");
         animals.forEach(System.out::println);
+        logger.log("Выведен список животных");
     }
 
     private String prompt() {

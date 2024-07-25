@@ -1,23 +1,15 @@
 
-Запуск приложения...
-Добавлено животное: Animal{id=1, name='Jon', type='Horse', birthDate=Fri Dec 23 00:00:00 MSK 2022}
-Приложение завершило работу.
-Запуск приложения...
-Добавлено животное: Animal{id=1, name='Sert', type='Horse', birthDate=Mon Mar 24 00:00:00 MSK 2014'Животное на знает команд! }
-Приложение завершило работу.
-Запуск приложения...
-Добавлено животное: Animal{id=1, name='asdfas', type='Donkey', birthDate=Mon Apr 20 00:00:00 MSD 1987', Животное на знает команд! }
-Добавлено животное: Animal{id=2, name='Uoui', type='Donkey', birthDate=Mon Nov 14 00:00:00 MSK 2011', Животное на знает команд! }
-Добавлено животное: Animal{id=3, name='qweer', type='Donkey', birthDate=Sat Aug 07 00:00:00 MSD 1999', Животное на знает команд! }
-Приложение завершило работу.
-Запуск приложения...
-Добавлено животное: Animal{id=1, name='Pert', type='Camel', birthDate=Tue Apr 12 00:00:00 MSK 2011', Животное на знает команд! }
-Добавлено животное: Animal{id=2, name='Bobik', type='Camel', birthDate=Mon Aug 24 00:00:00 MSD 1998', Животное на знает команд! }
-Приложение завершило работу.
-Запуск приложения...
-Добавлено животное: Animal{id=1, name='Storm', type='Horse', birthDate=Wed Sep 21 00:00:00 MSK 2011', Животное на знает команд! }
-Добавлено животное: Animal{id=2, name='Bobik', type='Camel', birthDate=Wed May 04 00:00:00 MSK 2011', Животное на знает команд! }
-Приложение завершило работу.
-Запуск приложения...
-Добавлено животное: Animal{id=1, name='Hog', type='Donkey', birthDate=Sun Jul 05 00:00:00 MSK 2020', Животное на знает команд! }
-Приложение завершило работу.
+Thu Jul 25 22:51:13 MSK 2024: Запуск приложения...
+Thu Jul 25 22:51:40 MSK 2024: Выведен список животных
+Thu Jul 25 22:51:54 MSK 2024: Приложение завершило работу.
+Thu Jul 25 22:53:08 MSK 2024: Запуск приложения...
+Thu Jul 25 22:55:11 MSK 2024: Добавлено животное: Animal{id=1, name='Druzhok', type='Horse', birthDate=Wed Feb 23 00:00:00 MSK 2000', Животное на знает команд! }
+Thu Jul 25 22:56:23 MSK 2024: Добавлено животное: Animal{id=2, name='Bill', type='Donkey', birthDate=Fri Aug 08 00:00:00 MSD 2008', Животное на знает команд! }
+Thu Jul 25 22:57:31 MSK 2024: Добавлено животное: Animal{id=3, name='Donny', type='Donkey', birthDate=Fri Oct 09 00:00:00 MSD 1998', Животное на знает команд! }
+Thu Jul 25 22:57:40 MSK 2024: Выведен список животных
+Thu Jul 25 22:58:54 MSK 2024: Тренировано животное: Animal{id=2, name='Bill', type='Donkey', birthDate=Fri Aug 08 00:00:00 MSD 2008', Животное знает следующие команды: Bray, }
+Thu Jul 25 22:59:33 MSK 2024: Тренировано животное: Animal{id=3, name='Donny', type='Donkey', birthDate=Fri Oct 09 00:00:00 MSD 1998', Животное знает следующие команды: Trot, }
+Thu Jul 25 22:59:56 MSK 2024: Тренировано животное: Animal{id=1, name='Druzhok', type='Horse', birthDate=Wed Feb 23 00:00:00 MSK 2000', Животное знает следующие команды: Jump, }
+Thu Jul 25 23:00:09 MSK 2024: Выведен список животных
+Thu Jul 25 23:00:59 MSK 2024: Удалено животное: Animal{id=1, name='Druzhok', type='Horse', birthDate=Wed Feb 23 00:00:00 MSK 2000', Животное знает следующие команды: Jump, }
+Thu Jul 25 23:01:06 MSK 2024: Приложение завершило работу.

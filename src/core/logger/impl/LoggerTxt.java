@@ -4,6 +4,7 @@ import src.core.logger.Logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 public class LoggerTxt implements Logger {
     String filePath;
@@ -16,7 +17,8 @@ public class LoggerTxt implements Logger {
         try(FileWriter writer = new FileWriter(filePath, true))
         {
 
-            writer.write(message);
+            Date date = new Date();
+            writer.write(date+ ": " + message);
 
             writer.append('\n');
 

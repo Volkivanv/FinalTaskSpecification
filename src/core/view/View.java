@@ -4,6 +4,9 @@ import src.core.animals.Animal;
 import src.core.animals.impl.packanimals.impl.Camel;
 import src.core.animals.impl.packanimals.impl.Donkey;
 import src.core.animals.impl.packanimals.impl.Horse;
+import src.core.animals.impl.pets.impl.Cat;
+import src.core.animals.impl.pets.impl.Dog;
+import src.core.animals.impl.pets.impl.Hamster;
 import src.core.logger.Logger;
 import src.core.util.Doings;
 
@@ -20,6 +23,7 @@ public class View {
     private final List<String> validOperators;
 
     private List<Animal> animals;
+
     public View(Logger logger) {
         this.logger = logger;
         this.validOperators = Arrays.stream(Doings.values())
@@ -31,19 +35,20 @@ public class View {
     private boolean isInvalidOperator(String doing) {
         return !validOperators.contains(doing);
     }
-    public void Run(){
+
+    public void Run() {
         // Запуск приложения
         logger.log("Запуск приложения...");
         // Выполнение основного функционала приложения
         do {
             String doing = getDoing();
-            if (Objects.equals(doing,"ADD")) {
+            if (Objects.equals(doing, "ADD")) {
                 addAnimal();
-            } else if (Objects.equals(doing,"LIST")){
+            } else if (Objects.equals(doing, "LIST")) {
                 listAnimals();
-            } else if (Objects.equals(doing,"DELETE")){
+            } else if (Objects.equals(doing, "DELETE")) {
                 deleteAnimal();
-            } else if (Objects.equals(doing,"TRAIN")){
+            } else if (Objects.equals(doing, "TRAIN")) {
                 trainAnimal();
             }
 
@@ -56,12 +61,12 @@ public class View {
     private void trainAnimal() {
         int id = Integer.parseInt(prompt("Введите ID животного для обучения: "));
         Animal animalToTrain = animals.stream()
-               .filter(animal -> animal.getId() == id)
-               .findFirst()
-               .orElse(null);
-        if (animalToTrain!= null) {
+                .filter(animal -> animal.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (animalToTrain != null) {
             animalToTrain.commandsToString();
-            System.out.print("Животное может изучить следующие команды: " + animalToTrain.getNewAvailableCommands() +"\n");
+            System.out.print("Животное может изучить следующие команды: " + animalToTrain.getNewAvailableCommands() + "\n");
             String newCommand = prompt("Введите новую команду: ");
             if (animalToTrain.getNewAvailableCommands().contains(newCommand)) {
                 animalToTrain.addCommand(newCommand);
@@ -75,10 +80,10 @@ public class View {
     private void deleteAnimal() {
         int id = Integer.parseInt(prompt("Введите ID животного для удаления: "));
         Animal animalToDelete = animals.stream()
-               .filter(animal -> animal.getId() == id)
-               .findFirst()
-               .orElse(null);
-        if (animalToDelete!= null) {
+                .filter(animal -> animal.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (animalToDelete != null) {
             animals.remove(animalToDelete);
             System.out.println("Животное с ID " + id + " удалено.");
             logger.log("Удалено животное: " + animalToDelete);
@@ -109,18 +114,18 @@ public class View {
 
     private String getDoing() {
         Scanner in = new Scanner(System.in);
-        System.out.print("Введите одно из действий (" + ADD +", "+DELETE+", "+ LIST+", " + TRAIN + "): ");
+        System.out.print("Введите одно из действий (" + ADD + ", " + DELETE + ", " + LIST + ", " + TRAIN + "): ");
         String doing = in.nextLine();
         while (true) {
             if (isInvalidOperator(doing)) {
                 System.err.println("Введено не правильное действие. "
-                        + "Введите правильное из (" + ADD +", "+DELETE+", "+ LIST+", " + TRAIN + "): ");
+                        + "Введите правильное из (" + ADD + ", " + DELETE + ", " + LIST + ", " + TRAIN + "): ");
                 doing = in.nextLine();
             } else return doing;
         }
     }
 
-    Animal inputPackAnimal(int id, String typeAnimal){
+    Animal inputPackAnimal(int id, String typeAnimal) {
         // Выбор вида животного
         Animal animal = switch (typeAnimal) {
             case "Horse" -> new Horse(id, prompt("Введите имя лошади: "), inputBirthDate());
@@ -131,12 +136,12 @@ public class View {
         return animal;
     }
 
-    Animal inputPet(int id, String typeAnimal){
+    Animal inputPet(int id, String typeAnimal) {
         // Выбор вида животного
         Animal animal = switch (typeAnimal) {
-            case "Cat" -> new Horse(id, prompt("Введите имя котика: "), inputBirthDate());
-            case "Dog" -> new Camel(id, prompt("Введите имя собаки: "), inputBirthDate());
-            case "Hamster" -> new Donkey(id, prompt("Введите имя хомяка: "), inputBirthDate());
+            case "Cat" -> new Cat(id, prompt("Введите имя котика: "), inputBirthDate());
+            case "Dog" -> new Dog(id, prompt("Введите имя собаки: "), inputBirthDate());
+            case "Hamster" -> new Hamster(id, prompt("Введите имя хомяка: "), inputBirthDate());
             default -> throw new IllegalArgumentException("Неверный вид животного: " + typeAnimal);
         };
         return animal;
@@ -158,13 +163,13 @@ public class View {
 
     public void addAnimal() {
         int id = getMaxId() + 1;
-        do{
+        do {
             String inp = prompt("Если хотите ввести вьючное животное введите '0', если питомца '1': ");
-            if(inp.equals("0")){
+            if (inp.equals("0")) {
                 String typeAnimal = prompt("Введите вид вьючного животного 'Horse', 'Camel', Donkey': ");
                 animals.add(inputPackAnimal(id, typeAnimal));
                 break;
-            } else if (inp.equals("1")){
+            } else if (inp.equals("1")) {
                 String typeAnimal = prompt("Введите вид вьючного животного 'Cat', 'Dog', Hamster': ");
                 animals.add(inputPet(id, typeAnimal));
                 break;
@@ -174,7 +179,7 @@ public class View {
         logger.log("Добавлено животное: " + animals.getLast().toString());
     }
 
-    private int getMaxId(){
+    private int getMaxId() {
         if (animals.isEmpty()) return 0;
         return animals.stream().mapToInt(Animal::getId).max().getAsInt();
     }

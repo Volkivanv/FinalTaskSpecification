@@ -4,7 +4,7 @@ import src.core.animals.Animal;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 public abstract class PackAnimal extends Animal {
 

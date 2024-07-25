@@ -6,13 +6,13 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Animal{
-    private int id;
-    private String name;
-    private String type;
-    private Date birthDate;
-    private List<Command> commands;
-    protected List<String> availableCommands;
+public abstract class Animal {
+    private final int id;
+    private final String name;
+    private final String type;
+    private final Date birthDate;
+    private final List<Command> commands;
+    protected List<String> availableCommands; // list of available commands
 
     public Animal(int id, String name, String type, Date birthDate) {
         this.id = id;
@@ -27,18 +27,23 @@ public abstract class Animal{
         Command command = new Command(newCommand);
         commands.add(command);
     }
+
     public String getName() {
         return name;
     }
+
     public int getId() {
         return id;
     }
+
     public String getType() {
         return type;
     }
+
     public Date getBirthDate() {
         return birthDate;
     }
+
     public List<Command> getCommands() {
         return commands;
     }
@@ -52,7 +57,7 @@ public abstract class Animal{
             for (Command command : commands) {
                 sb.append(command.getCommand()).append(", ");
             }
-          //  sb.append("\n");
+            //  sb.append("\n");
         }
         return sb.toString();
     }
@@ -68,7 +73,6 @@ public abstract class Animal{
     }
 
 
-
     @Override
     public String toString() {
         return "Animal{" +
@@ -78,9 +82,6 @@ public abstract class Animal{
                 ", birthDate=" + birthDate + '\'' +
                 ", " + commandsToString() + '}';
     }
-
-
-
 
 
 }

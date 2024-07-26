@@ -1,5 +1,6 @@
 package src.core.view;
 
+import src.core.Counter;
 import src.core.animals.Animal;
 import src.core.animals.impl.packanimals.impl.Camel;
 import src.core.animals.impl.packanimals.impl.Donkey;
@@ -10,6 +11,7 @@ import src.core.animals.impl.pets.impl.Hamster;
 import src.core.logger.Logger;
 import src.core.util.Doings;
 
+import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -24,12 +26,15 @@ public class View {
 
     private List<Animal> animals;
 
+    private Counter counter;
+
     public View(Logger logger) {
         this.logger = logger;
         this.validOperators = Arrays.stream(Doings.values())
                 .map(Doings::doing)
                 .collect(Collectors.toList());
         animals = new ArrayList<>();
+        counter = new Counter();
     }
 
     private boolean isInvalidOperator(String doing) {
@@ -44,12 +49,16 @@ public class View {
             String doing = getDoing();
             if (Objects.equals(doing, "ADD")) {
                 addAnimal();
+                counter.add();
             } else if (Objects.equals(doing, "LIST")) {
                 listAnimals();
             } else if (Objects.equals(doing, "DELETE")) {
                 deleteAnimal();
+                counter.sub();
             } else if (Objects.equals(doing, "TRAIN")) {
                 trainAnimal();
+            } else if (Objects.equals(doing, "COUNT")) {
+                System.out.println("Количество животных " + counter.getCount());
             }
 
             // Проверка условий выхода из цикла
@@ -114,12 +123,12 @@ public class View {
 
     private String getDoing() {
         Scanner in = new Scanner(System.in);
-        System.out.print("Введите одно из действий (" + ADD + ", " + DELETE + ", " + LIST + ", " + TRAIN + "): ");
+        System.out.print("Введите одно из действий (" + ADD + ", " + DELETE + ", " + LIST + ", " + TRAIN + ", " + COUNT + "): ");
         String doing = in.nextLine();
         while (true) {
             if (isInvalidOperator(doing)) {
                 System.err.println("Введено не правильное действие. "
-                        + "Введите правильное из (" + ADD + ", " + DELETE + ", " + LIST + ", " + TRAIN + "): ");
+                        + "Введите правильное из (" + ADD + ", " + DELETE + ", " + LIST + ", " + TRAIN + ", " + COUNT + "): ");
                 doing = in.nextLine();
             } else return doing;
         }

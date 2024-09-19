@@ -46,7 +46,7 @@ public class View {
         logger.log("Запуск приложения...");
         // Выполнение основного функционала приложения
         do {
-            String doing = getDoing();
+            String doing = getDoing().toUpperCase();
             if (Objects.equals(doing, "ADD")) {
                 addAnimal();
                 counter.add();
@@ -109,10 +109,15 @@ public class View {
         logger.log("Выведен список животных");
     }
 
+    //получаем подтверждение продолжения
     private String prompt() {
-        Scanner in = new Scanner(System.in);
-        System.err.println("Continue?... (y/n)");
-        return in.nextLine();
+        String mess = "";
+        do {
+            Scanner in = new Scanner(System.in);
+            System.err.println("Continue?... (y/n)");
+            mess = in.nextLine().toLowerCase();
+        } while (!Objects.equals(mess, "y")&&!Objects.equals(mess, "n"));
+        return mess;
     }
 
     private String prompt(String something) {

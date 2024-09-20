@@ -26,7 +26,9 @@ public class View {
 
     private List<Animal> animals;
 
-    private Counter counter;
+//    private Counter counter;
+
+    private Integer count;
 
     public View(Logger logger) {
         this.logger = logger;
@@ -34,7 +36,8 @@ public class View {
                 .map(Doings::doing)
                 .collect(Collectors.toList());
         animals = new ArrayList<>();
-        counter = new Counter();
+        this.count = 0;
+//        counter = new Counter();
     }
 
     private boolean isInvalidOperator(String doing) {
@@ -48,17 +51,19 @@ public class View {
         do {
             String doing = getDoing().toUpperCase();
             if (Objects.equals(doing, "ADD")) {
-                addAnimal();
-                counter.add();
+              try {
+                  addAnimal();
+//                counter.add();
+              } catch (Exception e) {}
             } else if (Objects.equals(doing, "LIST")) {
                 listAnimals();
             } else if (Objects.equals(doing, "DELETE")) {
                 deleteAnimal();
-                counter.sub();
+//                counter.sub();
             } else if (Objects.equals(doing, "TRAIN")) {
                 trainAnimal();
             } else if (Objects.equals(doing, "COUNT")) {
-                System.out.println("Количество животных " + counter.getCount());
+                System.out.println("Количество животных " + this.count);
             }
 
             // Проверка условий выхода из цикла
@@ -96,6 +101,9 @@ public class View {
             animals.remove(animalToDelete);
             System.out.println("Животное с ID " + id + " удалено.");
             logger.log("Удалено животное: " + animalToDelete);
+            try(Counter counter = new Counter()){
+                this.count = counter.sub(this.count);
+            } catch (Exception e) {}
         } else {
             System.out.println("Животное с таким ID не найдено.");
         }
@@ -175,17 +183,23 @@ public class View {
     }
 
 
-    public void addAnimal() {
+    public void addAnimal() throws Exception {
         int id = getMaxId() + 1;
         do {
             String inp = prompt("Если хотите ввести вьючное животное введите '0', если питомца '1': ");
             if (inp.equals("0")) {
                 String typeAnimal = prompt("Введите вид вьючного животного 'Horse', 'Camel', Donkey': ");
                 animals.add(inputPackAnimal(id, typeAnimal));
+                try(Counter counter = new Counter()){
+                    this.count = counter.add(this.count);
+                } catch (InterruptedException e) {}
                 break;
             } else if (inp.equals("1")) {
                 String typeAnimal = prompt("Введите вид вьючного животного 'Cat', 'Dog', Hamster': ");
                 animals.add(inputPet(id, typeAnimal));
+                try(Counter counter = new Counter()){
+                    this.count = counter.add(this.count);
+                } catch (InterruptedException e) {}
                 break;
             }
         }

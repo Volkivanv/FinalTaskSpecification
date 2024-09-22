@@ -9,6 +9,7 @@ import src.core.animals.impl.pets.impl.Cat;
 import src.core.animals.impl.pets.impl.Dog;
 import src.core.animals.impl.pets.impl.Hamster;
 import src.core.logger.Logger;
+import src.core.util.AnimalValidException;
 import src.core.util.Doings;
 
 import java.sql.SQLOutput;
@@ -98,12 +99,14 @@ public class View {
                 .findFirst()
                 .orElse(null);
         if (animalToDelete != null) {
+            try(Counter counter = new Counter(animalToDelete)){
             animals.remove(animalToDelete);
             System.out.println("Животное с ID " + id + " удалено.");
             logger.log("Удалено животное: " + animalToDelete);
-            try(Counter counter = new Counter()){
                 this.count = counter.sub(this.count);
-            } catch (Exception e) {}
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         } else {
             System.out.println("Животное с таким ID не найдено.");
         }
@@ -137,12 +140,12 @@ public class View {
     private String getDoing() {
         Scanner in = new Scanner(System.in);
         System.out.print("Введите одно из действий (" + ADD + ", " + DELETE + ", " + LIST + ", " + TRAIN + ", " + COUNT + "): ");
-        String doing = in.nextLine();
+        String doing = in.nextLine().toUpperCase();
         while (true) {
             if (isInvalidOperator(doing)) {
                 System.err.println("Введено не правильное действие. "
                         + "Введите правильное из (" + ADD + ", " + DELETE + ", " + LIST + ", " + TRAIN + ", " + COUNT + "): ");
-                doing = in.nextLine();
+                doing = in.nextLine().toUpperCase();
             } else return doing;
         }
     }
@@ -189,17 +192,23 @@ public class View {
             String inp = prompt("Если хотите ввести вьючное животное введите '0', если питомца '1': ");
             if (inp.equals("0")) {
                 String typeAnimal = prompt("Введите вид вьючного животного 'Horse', 'Camel', Donkey': ");
-                animals.add(inputPackAnimal(id, typeAnimal));
-                try(Counter counter = new Counter()){
+                Animal somePackAnimal = inputPackAnimal(id, typeAnimal);
+                try(Counter counter = new Counter(somePackAnimal)){
                     this.count = counter.add(this.count);
-                } catch (InterruptedException e) {}
+                    animals.add(somePackAnimal);
+                } catch (AnimalValidException e) {
+                    System.err.println(e.getMessage());
+                }
                 break;
             } else if (inp.equals("1")) {
                 String typeAnimal = prompt("Введите вид вьючного животного 'Cat', 'Dog', Hamster': ");
-                animals.add(inputPet(id, typeAnimal));
-                try(Counter counter = new Counter()){
+                Animal somePet = inputPet(id, typeAnimal);
+                try(Counter counter = new Counter(somePet)){
                     this.count = counter.add(this.count);
-                } catch (InterruptedException e) {}
+                    animals.add(somePet);
+                } catch (AnimalValidException e) {
+                    System.err.println(e.getMessage());
+                }
                 break;
             }
         }

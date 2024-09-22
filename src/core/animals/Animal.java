@@ -5,6 +5,7 @@ import src.core.commands.Command;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Animal {
     private final int id;
@@ -71,6 +72,26 @@ public abstract class Animal {
         }
         return newCommands;
     }
+
+    public boolean getNameFilled() {
+        if(Objects.equals(this.name, "")) return false;
+        return true;
+    }
+
+    public boolean getTypeFilled() {
+        if(Objects.equals(this.type, "")) return false;
+        return true;
+    }
+    public boolean getBirthDateFilled() {
+        if(Objects.equals(this.birthDate, null)) return false;
+        return true;
+    }
+
+    public boolean AnimalValid() {
+        return getNameFilled() && getTypeFilled() && getBirthDateFilled();
+    }
+
+
 
 
     @Override
